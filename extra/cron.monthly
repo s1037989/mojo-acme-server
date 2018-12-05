@@ -1,9 +1,5 @@
 #!/bin/sh
 
-/opt/mojo-acme-server/mojo-acme-server acme automate \    # this is the `automate` Perl module we installed earlier
-  -T nginx_default \                                      # You can have any number of templates, `automate` comes with a sample nginx config
-  -l http://*:8928 \                                      # Set mojo-acme-server to listen on whatever random port (and make sure the `acme` nginx configuration directive points to a URL that this listen configuration will pick up)
-  -o proxy_pass http://127.0.0.1:3000 \                   # This is the URL to pass the encrypted traffic to, in this case it's a development Mojolicious daemon
-  example.com www.example.com                             # These are the FQDN that this app will handle requests for
-
+/opt/mojo-acme-server/mojo-acme-server acme automate -T nginx_default -l http://*:8928 -o proxy_pass=http://127.0.0.1:3000 example.com www.example.com
+/opt/mojo-acme-server/mojo-acme-server acme automate -T nginx_default -l http://*:8928 -o proxy_pass=http://127.0.0.1:3000 example1.com www.example1.com
 /etc/init.d/nginx testconfig && systemctl restart nginx.service
