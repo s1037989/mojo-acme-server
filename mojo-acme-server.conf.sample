@@ -1,0 +1,5 @@
+{
+  logfile => '/var/log/mojo-acme.log',
+  ssldir => '/etc/ssl',
+  #webdir => '/etc/nginx/sites-enabled',
+};

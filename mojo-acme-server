@@ -1,0 +1,10 @@
+#!/usr/bin/env perl
+use Mojolicious::Lite;
+
+plugin 'Config';
+plugin 'ACME';
+
+app->log->path(app->config('logfile')) if app->config('logfile');
+app->log->level(app->config('loglevel')) if app->config('loglevel');
+
+app->start;
